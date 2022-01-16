@@ -4,13 +4,19 @@ Resources:
     Properties:
       ImageId: !Ref ImageNameParameter
       InstanceType: !Ref InstanceTypeParameter
-      SubnetId: !Ref SubnetID
+      SubnetId: !Ref SubnetIDParameter
+      AvailabilityZone: !Ref AvailabilityZoneParameter
       SecurityGroupIds:
         - !Ref SecurityGroupIdParameter
       Tags:
         - Key: createdby
           Value: princea
+        - Key: Name
+          Value: !Ref InstanceNameParameter
 Parameters:
+  InstanceNameParameter:
+    Type: String
+    Description: Name of the ec2 instance
   ImageNameParameter: 
     Description: Select the image ami
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
@@ -22,9 +28,12 @@ Parameters:
     AllowedValues:
     - t2.micro
     - t2.small
-  SubnetID:
+  SubnetIDParameter:
     Type: AWS::EC2::Subnet::Id
     Description: Subnet IDs that is a List of Subnet Id
   SecurityGroupIdParameter:
     Type: AWS::EC2::SecurityGroup::Id
     Description: SG Id
+  AvailabilityZoneParameter:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Description: Select the AZ
