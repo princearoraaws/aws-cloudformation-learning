@@ -1,0 +1,8 @@
+Resources: 
+  myEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-01efa4023f0f3a042
+      InstanceType: t2.micro
+      SecurityGroups:
+        - !ImportValue SSHSecurityGrp

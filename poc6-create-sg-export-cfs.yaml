@@ -1,0 +1,26 @@
+Resources: 
+  mySSHSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group For EC2
+      GroupName: !Ref GroupNameParameter
+      SecurityGroupIngress:
+      - CidrIp: 0.0.0.0/0
+        Description: SSH SG Rule
+        FromPort: 22
+        ToPort: 22
+        IpProtocol: tcp
+
+Parameters: 
+  GroupNameParameter:
+    Type: String
+    Description: Provide security group name
+
+Outputs:
+  StackSSHSecurityGrp:
+    Description: SSH Security group
+    Value: !Ref mySSHSG
+    Export:
+      Name: SSHSecurityGrp
+
+
